@@ -1,0 +1,26 @@
+export default {
+    Colors:{
+        Light_100: '#ffff',
+        Light_200: '#fffaf1',
+        Light_300: '#e1e1e6',
+        Light_400: '#c4c4cc',
+        Light_500: '#7c7c8a',
+        Light_600: '#76797b',
+        Light_700: '#4d585e',
+        Dark_100: '#000405',
+        Dark_200: '#00070a',
+        Dark_300: '#000204',
+        Dark_400: '#000a0f',
+        Dark_500: '#000c12',
+        Dark_600: '#00111a',
+        Dark_700: '#001117',
+        Dark_800: '#0d161b',
+        Dark_900: '#0d1d25',
+        Dark_1000: '#192227',
+        Tomato_100: '#750310',
+        Tomato_400: '#ab4d55',
+        Mint: '#a4d361',
+        Cake_100: '#82f3ff',
+        Cake_200: '#065e7c',
+    }
+}
