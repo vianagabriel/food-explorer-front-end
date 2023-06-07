@@ -7,4 +7,8 @@ export const Container = styled.button`
   border: none;
   color: ${({ theme }) => theme.Colors.Light_100};
   border: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .8rem;
 `;

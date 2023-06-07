@@ -8,7 +8,13 @@ export const Container = styled.div`
   color: ${({ theme }) => theme.Colors.Light_500};
   border-radius: 8px;
 
-  > input{
+ 
+
+  > svg {
+    margin-left: 3rem;
+  }
+
+  > input {
     height: 4.8rem;
     width: 100%;
     background-color: transparent;
@@ -16,15 +22,8 @@ export const Container = styled.div`
     padding: 1.4rem;
     color: ${({ theme }) => theme.Colors.Light_500};
 
-    &::placeholder{
-        color: ${({ theme }) => theme.Colors.Light_500};
-    }
-
-    &:hover{
-        border: 1px solid ${({ theme }) => theme.Colors.Light_500};
-        border-radius: 8px;
-        transition: all .2s;
+    &::placeholder {
+      color: ${({ theme }) => theme.Colors.Light_500};
     }
   }
-
 `;

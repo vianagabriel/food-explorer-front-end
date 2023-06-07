@@ -1,6 +1,6 @@
 import { Container } from "./styles";
 
-export function Button({ title, loading = false, isLight, ...rest }){
+export function Button({ title, loading = false, isLight, icon: Icon, count, ...rest }){
   return(
     <Container
      isLight={isLight}
@@ -8,7 +8,9 @@ export function Button({ title, loading = false, isLight, ...rest }){
      disabled={loading}
      {...rest} 
     >
+     {Icon && <Icon size={30}/>}
      { loading ? 'Carregando' : title}
+     {count}
     </Container>
   )
 };
