@@ -8,7 +8,7 @@ export function Button({ title, loading = false, isLight, icon: Icon, count, ...
      disabled={loading}
      {...rest} 
     >
-     {Icon && <Icon size={30}/>}
+     {Icon && <Icon size={25}/>}
      { loading ? 'Carregando' : title}
      {count}
     </Container>
