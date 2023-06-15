@@ -10,6 +10,7 @@ import { useState } from "react";
 export function Header(){
     const [count, setCount ] = useState(0)
     const [menuIsVisible, setMenuIsVisible] = useState(false)
+    const [isAdmin, setIsAdmin] = useState(false)
     return(
       <>
          <MenuMobile
@@ -22,9 +23,19 @@ export function Header(){
 
             <List className="menu" size={25} onClick={() => setMenuIsVisible(true)}/>
 
-            <Logo>
+            <Logo >
+                <div className="logoUser">
                 <img src={logoImg} alt="" />
                 <p>food explorer</p>
+                </div>
+             
+
+                {
+                 isAdmin &&
+                <div  className="admin">
+                  <span>admin</span>
+                </div>
+                }
             </Logo>
 
             <Search>
@@ -35,19 +46,38 @@ export function Header(){
             </Search>
 
             <MyOrder>
-                <Button 
-                  title='Pedidos '
-                  count={`(${count})`}
-                  icon={Receipt}
-                />
+              {isAdmin ? 
+              <Button 
+               
+              title='Novo Prato '
+            
+            /> :
+            <Button 
+               
+            title='Pedidos '
+            count={`(${count})`}
+            icon={Receipt}
+          
+          />
+
+            }
+                
             </MyOrder>
+
+            {isAdmin ? 
+             <div></div>
+            :
             <MyOrderMobile>
               <Receipt size={25}/>
               <p>{count}</p>
             </MyOrderMobile>
+          }
             
+            
+            <div className="signOut">
 
-            <SignOut className="signOut" size={32}/>
+             <SignOut className="signOut" size={32}/>
+            </div>
         </Container>
       </>
     )

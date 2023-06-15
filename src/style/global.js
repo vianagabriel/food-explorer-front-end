@@ -14,6 +14,17 @@ export default createGlobalStyle`
   body{
     background: ${({ theme }) => theme.Colors.Dark_400};
     color: ${({ theme }) => theme.Colors.Light_100};
+
+
+    ::-webkit-scrollbar{
+    width: 8px;
+
+  }
+
+  ::-webkit-scrollbar-thumb{
+    background-color: ${({ theme }) => theme.Colors.Light_100};
+    border-radius: 5px;    
+  }
   }
 
   body, input, button, textarea{

@@ -28,21 +28,49 @@ export const Container = styled.header`
     }
   }
 
+ .signOut{
+  cursor: pointer;
+ }
 `;
 
 
 export const Logo = styled.div`
   display: flex;
-  align-items: center;
-  gap: 1rem;
+  flex-direction: column;
+  align-items: flex-end;
+  
+  .logoUser{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
 
-  > p {
+    > p {
     font-weight: 700;
     font-size: 2.4rem;
+  
+}
+  }
+  
+
+
+
+  .admin span{
+    color: ${({ theme }) => theme.Colors.Cake_100};
+    font-size: 1.5rem;
+    
   }
 
-
   @media(min-width: 350px) and (max-width: 800px) {
+    flex-direction: row;
+    gap: 8px;
+    align-items: center;
+
+  .logoUser{
+    display: flex;
+    gap: 1rem;
+  }
+  
+
      p {
       font-size: 2.1rem;
      }

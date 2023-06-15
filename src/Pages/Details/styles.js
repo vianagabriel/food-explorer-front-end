@@ -47,6 +47,8 @@ export const Image = styled.div`
  width: 25rem;
  margin: 0 auto;
 
+ 
+
  @media(min-width: 1100px){
     margin: 0;
     width: 39rem;

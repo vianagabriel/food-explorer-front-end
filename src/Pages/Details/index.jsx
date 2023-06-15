@@ -5,50 +5,73 @@ import plateImg from '../../assets/plate.png';
 import { Tag } from "../../components/Tag";
 import { Button } from "../../components/Button";
 import { Footer } from "../../components/Footer";
+import { useState } from "react";
+import { ButtonText } from "../../components/ButtonText";
 
 export function Details() {
+  const [isAdmin, setIsAdmin] = useState(false)
+  return (
+    <Container>
+      <Header />
 
-    return (
-        <Container>
-            <Header />
+      <ButtonText  title='Voltar' icon={CaretLeft}/>
+      <Main>
+        <Image>
+          <img src={plateImg} alt="" />
+        </Image>
 
-              <a href="#"><CaretLeft size={25}/> Voltar</a>
-            <Main>
-                <Image>
-                  <img src={plateImg} alt="" />
-                </Image>
+        <Description>
+          <h3>Salada Ravanello</h3>
 
-                <Description>
-                  <h3>Salada Ravanello</h3>
+          <p>Rabanetes, folhas verdes e molho agridoce salpicados com gergelim. O pão naan dá um toque especial.</p>
 
-                  <p>Rabanetes, folhas verdes e molho agridoce salpicados com gergelim. O pão naan dá um toque especial.</p>
-                  
-                  <TagsContainer>
-                   <Tag title='alface'/>
-                   <Tag title='cebola'/>
-                   <Tag title='pão naan'/>
-                   <Tag title='pepino'/>
-                   <Tag title='rabanete'/>
-                   <Tag title='tomate'/>
-                  </TagsContainer>
+          <TagsContainer>
+            <Tag title='alface' />
+            <Tag title='cebola' />
+            <Tag title='pão naan' />
+            <Tag title='pepino' />
+            <Tag title='rabanete' />
+            <Tag title='tomate' />
+          </TagsContainer>
 
-                  <AmountAndRequest>
-                    <Amount>
-                      <Minus/>
-                      <span>01</span>
-                      <Plus/>
-                    </Amount>
+          <AmountAndRequest>
+            {
+              isAdmin ?
 
-                    <Button className='btn' title='Pedir ' icon={Receipt} count={`R$ 25,00`}/>
-                  </AmountAndRequest>
+                <></>
 
-                </Description>
-            </Main>
+                :
 
-            <Footer/>
-        </Container>
-    )
-  };
+                <Amount>
+                  <Minus />
+                  <span>01</span>
+                  <Plus />
+                </Amount>
+
+            }
+            {isAdmin ?
+
+              <Button
+                className='btn'
+                title='Editar prato '
+               
+              />
+              :
+              <Button
+                className='btn'
+                title='Pedir '
+                icon={Receipt}
+                count={`R$ 25,00`}
+              />}
+          </AmountAndRequest>
+
+        </Description>
+      </Main>
+
+      <Footer />
+    </Container>
+  )
+};
 
 
 

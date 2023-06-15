@@ -2,7 +2,8 @@ import { Container, BannerContainer, TextsBanner } from "./styles";
 import { Header } from '../../components/Header';
 import bannerImg from '../../assets/bannerImg.png' 
 import { Section } from "../../components/Section";
-import { Card } from "../../components/Card";
+import { Footer } from "../../components/Footer";
+import { Carousel } from "../../components/Carousel";
 
 export function Home(){
   return(
@@ -19,8 +20,18 @@ export function Home(){
      </BannerContainer>
  
      <Section title='Refeições'>
-        <Card/>
+        <Carousel/>
      </Section>
+
+     <Section title='Sobremesas'>
+        <Carousel/>
+     </Section>
+
+     <Section title='Bebidas'>
+        <Carousel/>
+     </Section>
+
+     <Footer/>
     </Container>
   )
 };
