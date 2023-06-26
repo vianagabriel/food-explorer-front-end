@@ -13,6 +13,12 @@ export const Container = styled.div`
 
   .heart{
     margin-left: 13rem;
+
+    > a {
+      > svg{
+        color: ${({ theme }) => theme.Colors.Light_100};
+      }
+    }
   }
   > h3{
     font-weight: 300;

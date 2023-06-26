@@ -2,9 +2,11 @@ import { Container, Close, Search } from './style';
 import { X, MagnifyingGlass } from '@phosphor-icons/react';
 import { Input } from '../Input';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
+
 
 export function MenuMobile({ menuIsVisible, setMenuIsVisible }) {
-    const [isAdmin, setIsAdmin] = useState(false);
+    const [isAdmin, setIsAdmin] = useState(true);
     return (
         <Container isVisible={menuIsVisible}>
             <Close>
@@ -19,7 +21,10 @@ export function MenuMobile({ menuIsVisible, setMenuIsVisible }) {
                 />
              { isAdmin ?
               <>
-              <p>Novo prato</p>
+              <p>
+                <Link to='/new'>Novo prato</Link>  
+              </p>
+
               <p>Sair</p>
               </>
                :

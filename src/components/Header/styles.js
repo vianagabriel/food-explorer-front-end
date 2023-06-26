@@ -94,9 +94,11 @@ export const Search = styled.div`
 
 export const MyOrder = styled.div`
   width: 21.6rem;
-
-
-
+  height: 4.8rem;
+  
+  .btn{
+    margin: 0;
+  }
 
   @media(min-width: 350px) and (max-width: 800px) {
     display: none;

@@ -8,13 +8,16 @@ import { Footer } from "../../components/Footer";
 import { useState } from "react";
 import { ButtonText } from "../../components/ButtonText";
 
+
+
+
 export function Details() {
-  const [isAdmin, setIsAdmin] = useState(false)
+  const [isAdmin, setIsAdmin] = useState(true)
   return (
     <Container>
       <Header />
 
-      <ButtonText  title='Voltar' icon={CaretLeft}/>
+      <ButtonText to='/' title='Voltar' icon={CaretLeft} />
       <Main>
         <Image>
           <img src={plateImg} alt="" />
@@ -50,15 +53,18 @@ export function Details() {
 
             }
             {isAdmin ?
+              
+                <Button
+                  to='/new'
+                  className='btn admin'
+                  title='Editar prato '
 
-              <Button
-                className='btn'
-                title='Editar prato '
-               
-              />
+                />
+              
+
               :
               <Button
-                className='btn'
+                className='btn '
                 title='Pedir '
                 icon={Receipt}
                 count={`R$ 25,00`}

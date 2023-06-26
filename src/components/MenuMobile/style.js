@@ -56,5 +56,10 @@ export const Search = styled.div`
     padding-bottom: 1rem;
     color: ${({ theme }) => theme.Colors.Light_300};
     border-bottom: 1px solid ${({ theme }) => theme.Colors.Light_700};
+
+    >a{
+     color: ${({ theme }) => theme.Colors.Light_300};
+      
+    }
   }
 `;

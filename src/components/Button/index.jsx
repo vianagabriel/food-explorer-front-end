@@ -1,9 +1,11 @@
-import { Container } from "./styles";
 
-export function Button({ title, loading = false, isLight, icon: Icon, count, ...rest }){
+import { Container } from "./styles"; 
+
+
+export function Button({ title, loading = false,  icon: Icon, count, ...rest }){
   return(
     <Container
-     isLight={isLight}
+
      type="button"
      disabled={loading}
      {...rest} 

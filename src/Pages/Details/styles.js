@@ -131,8 +131,11 @@ export const AmountAndRequest = styled.div`
     width: 18.8rem;
     height: 3.9rem;
     border-radius: 4px;
+    margin: 0;
   
   }
+
+  
 `;
 
 export const Amount = styled.div`
