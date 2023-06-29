@@ -11,7 +11,7 @@ export function Button({ title, loading = false,  icon: Icon, count, ...rest }){
      {...rest} 
     >
      {Icon && <Icon size={25}/>}
-     { loading ? 'Carregando' : title}
+     { loading ? 'Carregando...' : title}
      {count}
     </Container>
   )

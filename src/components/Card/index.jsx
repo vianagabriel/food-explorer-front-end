@@ -1,23 +1,26 @@
 import { Container, Amount, AmountRequest } from "./styles";
-import plateImg from '../../assets/plate.png';
 import { Minus, Plus, HeartStraight, PencilSimple } from '@phosphor-icons/react';
 import { Button } from "../Button";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../../hooks/auth";
 
 
+export function Card({ title, description, price, imageURL, amount, id }) {
 
-export function Card() {
+  const { user } = useAuth();
+  const navigate = useNavigate();
 
-  const [isAdmin, setIsAdmin] = useState(true)
+  function handleDetails(id){
+     navigate(`/details/${id}`)
+  }
 
   return (
-    <Container>
+    <Container >
       <div className="heart">
 
 
         {
-          isAdmin ?
+          user.isAdmin ?
              <Link to='/new'>
              
               <PencilSimple size={28} />
@@ -30,12 +33,13 @@ export function Card() {
 
 
       </div>
-      <img src={plateImg} alt="" />
-      <h3>Salada Ravanello</h3>
-      <span>Massa fresca com camarões e pesto. </span>
-      <p>R$ 49,97</p>
+      
+      <img src={imageURL} alt="" onClick={() => handleDetails(id)}/>
+      <h3>{title}</h3>
+      <span>{description} </span>
+      <p>{price}</p>
       {
-        isAdmin ?
+        user.isAdmin ?
 
           <></>
 
@@ -44,7 +48,7 @@ export function Card() {
           <AmountRequest>
             <Amount>
               <Minus />
-              <span>01</span>
+              <span>{amount}</span>
               <Plus />
             </Amount>
 

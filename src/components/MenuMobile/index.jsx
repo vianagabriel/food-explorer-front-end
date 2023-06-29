@@ -1,12 +1,17 @@
 import { Container, Close, Search } from './style';
 import { X, MagnifyingGlass } from '@phosphor-icons/react';
 import { Input } from '../Input';
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../../hooks/auth';
 
 
 export function MenuMobile({ menuIsVisible, setMenuIsVisible }) {
-    const [isAdmin, setIsAdmin] = useState(true);
+
+  const { user, signOut } = useAuth();
+
+  function handleSignOut(){
+    signOut();
+  }
     return (
         <Container isVisible={menuIsVisible}>
             <Close>
@@ -19,16 +24,16 @@ export function MenuMobile({ menuIsVisible, setMenuIsVisible }) {
                     placeholder='Busque por pratos ou ingredientes'
                     icon={MagnifyingGlass}
                 />
-             { isAdmin ?
+             { user.isAdmin ?
               <>
               <p>
                 <Link to='/new'>Novo prato</Link>  
               </p>
 
-              <p>Sair</p>
+              <p onClick={handleSignOut}>Sair</p>
               </>
                :
-               <p>Sair</p>
+               <p onClick={handleSignOut}>Sair</p>
               }
             </Search>
 

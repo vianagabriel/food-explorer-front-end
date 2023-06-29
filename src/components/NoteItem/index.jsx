@@ -16,7 +16,7 @@ export function NoteItem({ isNew, value, onClick, ...rest }) {
           onClick={onClick}
 
         >
-         { isNew ? <Plus/> : <X/>}
+         { isNew ? <X/> : <Plus/>}
         </button>
     </Container>
  )

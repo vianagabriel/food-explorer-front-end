@@ -4,17 +4,17 @@ import { Routes, Route } from 'react-router-dom';
 import { Home } from '../pages/Home';
 import { Details } from '../pages/Details';
 import { New } from '../pages/New';
-import { useState } from 'react';
+import { useAuth } from '../hooks/auth';
 
 
 export function AppRoutes() {
-  const[isAdmin, setIsAdmin ] = useState(true)
+  const { user } = useAuth();
   return (
     <Routes>
         <Route path='/' element={<Home/>}/>
-        <Route path='/details' element={<Details/>}/>
+        <Route path='/details/:id' element={<Details/>}/>
         
-        { isAdmin && <Route path='/new' element={<New/>}/> }
+        { user.isAdmin && <Route path='/new' element={<New/>}/> }
     </Routes>
   );
 }

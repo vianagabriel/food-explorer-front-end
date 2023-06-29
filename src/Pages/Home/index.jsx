@@ -20,15 +20,15 @@ export function Home(){
      </BannerContainer>
  
      <Section title='Refeições'>
-        <Carousel/>
+        <Carousel category='refeições'/>
      </Section>
 
      <Section title='Sobremesas'>
-        <Carousel/>
+        <Carousel category='sobremesas'/>
      </Section>
 
      <Section title='Bebidas'>
-        <Carousel/>
+        <Carousel category='bebidas'/>
      </Section>
 
      <Footer/>

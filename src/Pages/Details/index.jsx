@@ -5,41 +5,59 @@ import plateImg from '../../assets/plate.png';
 import { Tag } from "../../components/Tag";
 import { Button } from "../../components/Button";
 import { Footer } from "../../components/Footer";
-import { useState } from "react";
 import { ButtonText } from "../../components/ButtonText";
-
-
+import { useAuth } from "../../hooks/auth";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { api } from "../../services/api";
 
 
 export function Details() {
-  const [isAdmin, setIsAdmin] = useState(true)
+  const { user } = useAuth();
+  const [data, setData] = useState(null);
+  const params = useParams();
+ 
+
+  useEffect(() => {
+    async function fetchPlates(){
+      const response = await api.get(`/plates/${params.id}`)
+      setData(response.data)
+    }
+    
+    fetchPlates();
+  }, [])
+
   return (
     <Container>
       <Header />
 
       <ButtonText to='/' title='Voltar' icon={CaretLeft} />
-      <Main>
+      { data &&
+        <Main>
         <Image>
-          <img src={plateImg} alt="" />
+          <img src={`${api.defaults.baseURL}/files/${data.image}`} alt="" />
         </Image>
 
         <Description>
-          <h3>Salada Ravanello</h3>
+          <h3>{data.title}</h3>
 
-          <p>Rabanetes, folhas verdes e molho agridoce salpicados com gergelim. O pão naan dá um toque especial.</p>
+          <p>{data.description}</p>
 
           <TagsContainer>
-            <Tag title='alface' />
-            <Tag title='cebola' />
-            <Tag title='pão naan' />
-            <Tag title='pepino' />
-            <Tag title='rabanete' />
-            <Tag title='tomate' />
+            {
+              data.ingredients && data.ingredients.map(ingredient => (
+              <Tag 
+                key={ingredient.id}
+                title={ingredient.name} 
+              />
+              ))
+            }
+            
           </TagsContainer>
 
           <AmountAndRequest>
             {
-              isAdmin ?
+              user.isAdmin ?
 
                 <></>
 
@@ -52,7 +70,7 @@ export function Details() {
                 </Amount>
 
             }
-            {isAdmin ?
+            {user.isAdmin ?
               
                 <Button
                   to='/new'
@@ -67,12 +85,13 @@ export function Details() {
                 className='btn '
                 title='Pedir '
                 icon={Receipt}
-                count={`R$ 25,00`}
+                count={`R$ ${data.price}`}
               />}
           </AmountAndRequest>
 
         </Description>
       </Main>
+      }
 
       <Footer />
     </Container>

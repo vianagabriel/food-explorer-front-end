@@ -28,6 +28,7 @@ export const Container = styled.div`
   > img{
     width: 8.8rem;
     margin-top: -3.5rem;
+    cursor: pointer;
   }
 
   .btn{
@@ -48,7 +49,7 @@ export const Container = styled.div`
   @media (min-width: 1000px){
     width: 30rem;
     height: 46.2rem;
-    gap: 1.8rem;
+
 
     .heart{
         margin-left: 20rem;
@@ -60,12 +61,13 @@ export const Container = styled.div`
     }
 
     > h3{
-        font-size: 3rem;
+        font-size: 2%.5;
     }
 
 
   > p{
      font-size: 3.2rem;
+
   }
 
   .btn{

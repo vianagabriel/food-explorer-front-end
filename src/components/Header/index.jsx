@@ -5,13 +5,19 @@ import { Button } from '../Button';
 import { MenuMobile } from '../MenuMobile';
 import { Receipt, MagnifyingGlass, SignOut, List } from '@phosphor-icons/react'
 import { useState } from "react";
+import { useAuth } from "../../hooks/auth";
+
 
 
 
 export function Header() {
   const [count, setCount] = useState(0)
   const [menuIsVisible, setMenuIsVisible] = useState(false)
-  const [isAdmin, setIsAdmin] = useState(true)
+  const { user, signOut } = useAuth();
+
+  function handleSignOut(){
+    signOut();
+  }
   return (
     <>
       <MenuMobile
@@ -32,10 +38,12 @@ export function Header() {
 
 
           {
-            isAdmin &&
+            user.isAdmin ?
             <div className="admin">
               <span>admin</span>
             </div>
+            :
+            <></>
           }
         </Logo>
 
@@ -48,7 +56,7 @@ export function Header() {
 
         <MyOrder>
          
-            {isAdmin ?
+            {user.isAdmin ?
 
               <Button
                 to='/new'
@@ -67,11 +75,9 @@ export function Header() {
 
             }
          
-
-
         </MyOrder>
 
-        {isAdmin ?
+        {user.isAdmin ?
           <div></div>
           :
           <MyOrderMobile>
@@ -80,10 +86,12 @@ export function Header() {
           </MyOrderMobile>
         }
 
-
         <div className="signOut">
 
-          <SignOut className="signOut" size={32} />
+          <SignOut 
+            className="signOut" size={32} 
+            onClick={handleSignOut}
+          />
         </div>
       </Container>
     </>
