@@ -10,7 +10,7 @@ import { useAuth } from "../../hooks/auth";
 
 
 
-export function Header() {
+export function Header({ handleSearch }) {
   const [count, setCount] = useState(0)
   const [menuIsVisible, setMenuIsVisible] = useState(false)
   const { user, signOut } = useAuth();
@@ -51,6 +51,7 @@ export function Header() {
           <Input
             placeholder='Busque por pratos ou ingredientes'
             icon={MagnifyingGlass}
+            onChange={handleSearch}
           />
         </Search>
 

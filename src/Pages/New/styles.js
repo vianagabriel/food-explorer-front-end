@@ -62,7 +62,7 @@ export const Form = styled.form`
   .input {
     
     > input[type='file']{
-        display: none;
+        display: initial;
         position: absolute;
         bottom: 41rem;
         

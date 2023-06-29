@@ -24,18 +24,30 @@ export function New() {
 
     const navigate = useNavigate();
 
-    async function handleNewPlate(){
-        await api.post('/plates', { 
-            title,
-            description,
-            price,
-            category,
-            ingredients,
-            image
-        })
+    async function handleNewPlate() {
+    
+        const formData = new FormData();
+        formData.append("image", image);
+        formData.append("title", title);
+        formData.append("description", description);
+        formData.append("category", category);
+        formData.append("price", price);
 
-        alert('Prato cadastrado com sucesso.');
-        navigate('/')
+        ingredients.map(ingredient => (
+            formData.append("ingredients", ingredient)
+        ))
+
+        await api
+            .post("/plates", formData)
+            .then(alert("Prato adicionado com sucesso!"), navigate("/"))
+            .catch((error) => {
+                if (error.response) {
+                    alert(error.response.data.message);
+                } else {
+                    alert("Erro ao criar o prato!");
+                }
+            });  
+
     }
 
     function handleAddIngredients() {
