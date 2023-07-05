@@ -37,7 +37,7 @@ export const Close = styled.div`
   padding: 5.4rem 2.8rem 2.4rem 2.8rem;
   margin-bottom: 3.6rem;
 
-  > p {
+  > p{
     font-size: 2.1rem;
   }
 `;
@@ -57,7 +57,7 @@ export const Search = styled.div`
     color: ${({ theme }) => theme.Colors.Light_300};
     border-bottom: 1px solid ${({ theme }) => theme.Colors.Light_700};
 
-    >a{
+    >a {
      color: ${({ theme }) => theme.Colors.Light_300};
       
     }

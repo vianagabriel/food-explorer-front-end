@@ -2,23 +2,37 @@ import styled from "styled-components";
 
 export const Container = styled.header`
   width: 100%;
-  padding-block: 3.7rem;
-  padding-inline: 18rem;
+  padding-block: 2.7rem;
+  padding-inline: 15rem;
   background-color: ${({ theme }) => theme.Colors.Dark_600};
   display: flex;
   align-items: center;
-  gap: 3.2rem;
+  justify-content: space-between;
+  
 
   .menu{
     display: none;
   }
 
+  > .favorites{
+    color: ${({ theme }) => theme.Colors.Light_100};
+    font-size: 1.4rem;
+    margin: 0px;
+    margin-left:0;
+    margin-top: 0;
+    width: 10rem;
+  
+  }
 
   @media(min-width: 350px) and (max-width: 800px) {
     gap: 1.6rem;
     justify-content: space-around;
     padding-inline: 0;
-
+    
+    .favorites{
+      display: none;
+    }
+    
     > .menu{
       display: initial;
     }
@@ -39,6 +53,9 @@ export const Logo = styled.div`
   flex-direction: column;
   align-items: flex-end;
   
+
+  cursor: pointer;
+  
   .logoUser{
     display: flex;
     align-items: center;
@@ -52,7 +69,9 @@ export const Logo = styled.div`
   }
   
 
-
+  .admin{
+    margin-top: -.9rem;
+  }
 
   .admin span{
     color: ${({ theme }) => theme.Colors.Cake_100};

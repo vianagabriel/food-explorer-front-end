@@ -5,7 +5,7 @@ export const Container = styled.footer`
   height: 7.7rem;
   background-color: ${({ theme }) => theme.Colors.Dark_600 };
   position: relative;
-  bottom: -1rem;
+  bottom: -3rem;
   display: flex;
   justify-content: space-around;
   align-items: center;

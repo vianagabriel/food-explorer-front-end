@@ -1,14 +1,13 @@
 import { Header } from "../../components/Header";
 import { Container, Image, Description, Main, TagsContainer, AmountAndRequest, Amount } from "./styles";
 import { CaretLeft, Minus, Plus, Receipt } from '@phosphor-icons/react';
-import plateImg from '../../assets/plate.png';
 import { Tag } from "../../components/Tag";
 import { Button } from "../../components/Button";
 import { Footer } from "../../components/Footer";
 import { ButtonText } from "../../components/ButtonText";
 import { useAuth } from "../../hooks/auth";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { api } from "../../services/api";
 
 
@@ -16,7 +15,6 @@ export function Details() {
   const { user } = useAuth();
   const [data, setData] = useState(null);
   const params = useParams();
- 
 
   useEffect(() => {
     async function fetchPlates(){
@@ -73,7 +71,7 @@ export function Details() {
             {user.isAdmin ?
               
                 <Button
-                  to='/new'
+                  to={`/edit/${params.id}`}
                   className='btn admin'
                   title='Editar prato '
 

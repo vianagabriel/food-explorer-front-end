@@ -33,7 +33,16 @@ export function MenuMobile({ menuIsVisible, setMenuIsVisible }) {
               <p onClick={handleSignOut}>Sair</p>
               </>
                :
+               <>
+               <p>
+               <Link to='/favorites'>
+                 Meus favoritos
+               </Link>
+               </p>
+                
+               
                <p onClick={handleSignOut}>Sair</p>
+               </>
               }
             </Search>
 

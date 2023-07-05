@@ -8,7 +8,6 @@ export const Container = styled.div`
 
 
 
-
   @media (min-width: 350px) and (max-width: 800px){
     margin-left: 0;
     margin-bottom: 5rem;

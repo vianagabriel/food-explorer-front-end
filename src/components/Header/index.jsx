@@ -6,6 +6,7 @@ import { MenuMobile } from '../MenuMobile';
 import { Receipt, MagnifyingGlass, SignOut, List } from '@phosphor-icons/react'
 import { useState } from "react";
 import { useAuth } from "../../hooks/auth";
+import { Link, useNavigate } from "react-router-dom";
 
 
 
@@ -14,9 +15,14 @@ export function Header({ handleSearch }) {
   const [count, setCount] = useState(0)
   const [menuIsVisible, setMenuIsVisible] = useState(false)
   const { user, signOut } = useAuth();
+  const navigate = useNavigate();
 
   function handleSignOut(){
     signOut();
+  }
+
+  function handleHome(){
+    navigate('/')
   }
   return (
     <>
@@ -30,7 +36,7 @@ export function Header({ handleSearch }) {
 
         <List className="menu" size={25} onClick={() => setMenuIsVisible(true)} />
 
-        <Logo >
+        <Logo onClick={handleHome}>
           <div className="logoUser">
             <img src={logoImg} alt="" />
             <p>food explorer</p>
@@ -47,6 +53,11 @@ export function Header({ handleSearch }) {
           }
         </Logo>
 
+      
+        
+        <Link to='/favorites'  className="favorites">Meus favoritos</Link>
+
+      
         <Search>
           <Input
             placeholder='Busque por pratos ou ingredientes'
@@ -79,7 +90,7 @@ export function Header({ handleSearch }) {
         </MyOrder>
 
         {user.isAdmin ?
-          <div></div>
+          <></>
           :
           <MyOrderMobile>
             <Receipt size={25} />

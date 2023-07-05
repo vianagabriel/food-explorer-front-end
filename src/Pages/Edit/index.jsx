@@ -11,10 +11,11 @@ import { useState } from 'react';
 
 
 import { api } from '../../services/api';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useEffect } from 'react';
 
 
-export function New() {
+export function Edit() {
     const navigate = useNavigate();
 
     const [ingredients, setIngredients] = useState([]);
@@ -29,7 +30,7 @@ export function New() {
         }
     }
 
-    function handleRemoveIngredient(deleted){
+    function handleRemoveIngredient(deleted) {
         setIngredients(prevState => prevState.filter(ingredient => ingredient !== deleted));
     }
 
@@ -38,76 +39,85 @@ export function New() {
     const [price, setPrice] = useState("");
     const [category, setCategory] = useState("");
     const [image, setImage] = useState(null);
+    const params = useParams();
 
+   
 
     async function handleNewPlate() {
 
-       
-       const fileUpload = new FormData();
 
+        const fileUpload = new FormData();
+      
 
-     
-       if(!title || !description || !price || !category || !image){
-         return alert('Preencha todos os campos');
-       }
+        if (newIngredient.length > 0) {
+            return alert('Você deixou um ingrediente pedente no campo para adicionar.')
+        }
 
-       if(newIngredient.length > 0){
-         return alert('Você deixou um ingrediente pedente no campo para adicionar.')
-       }
-            
-       try {
-        const response = await api.post("/plates", {
-            title, 
-            price,
-            ingredients,
-            description,
-            category
+        try {
+            const response = await api.put(`/plates/${params.id}`, {
+                title,
+                price,
+                ingredients,
+                description,
+                category
             })
 
+            fileUpload.append("image", image)
 
-         const plate_id = response.data.plates_id;
+            const config = {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            };
 
-   
-          fileUpload.append("image", image)
-    
-          const config = {
-            headers: {
-              'Content-Type': 'multipart/form-data',
-            },
-          };
-    
-          await api.patch(`/plates/image/${plate_id}`, fileUpload, config) 
-    
-          alert("Prato criado com sucesso!");
-          navigate("/");
-     
-       } catch (error) {
-          if(error.message){
-            return alert(error.response.data.message)
-          }else{
-            return alert('Não foi possivel cadastrar o prato.')
-          }
-       }
+            await api.patch(`/plates/image/${params.id}`, fileUpload, config)
+
+            alert("Prato Atualizado com sucesso!");
+            navigate("/");
+
+        } catch (error) {
+            navigate('/')
+        }
     }
-  
+    useEffect(() => {
+        async function fetchPlates(){
+          const response = await api.get(`/plates/${params.id}`)
+          const { title, description, category, price, ingredients, image } = response.data;
+          console.log(response)
+          
+
+          setTitle(title)
+          setCategory(category)
+          setPrice(price)
+          setDescription(description)
+          setImage(image)
+          setIngredients(ingredients.map(ingredient => ingredient.name));
+        
+        }
+        
+        fetchPlates();
+      }, [])
+    
+
     return (
         <>
             <Header />
             <Main>
                 <ButtonText to='/' title='Voltar' icon={CaretLeft} />
 
-                <h3>Novo prato</h3>
+                <h3>Editar prato</h3>
 
-                <Form encType='multipart/form-data'>
+                <Form >
                     <div className="primaryInputs">
                         <div className="imgPlate">
                             <label htmlFor="">Imagem do prato</label>
                             <label htmlFor="photo" className='input'>
-                                <input 
-                                  type="file" 
-                                  id='photo'
-                                  onChange={(e) => setImage(e.target.files[0])}
-                                  
+                                <input
+                                    type="file"
+                                    id='photo'
+                                    name='image'
+                                    onChange={(e) => setImage(e.target.files[0])}
+
                                 />
                                 <Input
                                     isDark
@@ -124,6 +134,7 @@ export function New() {
                             <Input
                                 placeholder='Ex: Salada Ceaser'
                                 isDark
+                                value={title}
                                 onChange={e => setTitle(e.target.value)}
                             />
                         </div>
@@ -131,10 +142,11 @@ export function New() {
                         <div className="category">
                             <label htmlFor="">Categoria</label>
                             <div className="select">
-                                <select 
-                                   name="" 
-                                   id=""
-                                   onChange={e => setCategory(e.target.value)}
+                                <select
+                                    name=""
+                                    id=""
+                                    value={category}
+                                    onChange={e => setCategory(e.target.value)}
                                 >
                                     <option value="">Selecione uma opção</option>
                                     <option value="refeições">Refeição</option>
@@ -180,6 +192,7 @@ export function New() {
                                 type='number'
                                 placeholder='R$ 00,00'
                                 isDark
+                                value={price}
                                 onChange={e => setPrice(e.target.value)}
 
                             />
@@ -188,15 +201,16 @@ export function New() {
 
                     <div className="description">
                         <label htmlFor="">Descrição</label>
-                        <Textarea 
-                          placeholder='Fale brevemente sobre o prato, seus ingredientes e composição' 
-                          onChange={e => setDescription(e.target.value)}
+                        <Textarea
+                            placeholder='Fale brevemente sobre o prato, seus ingredientes e composição'
+                            value={description}
+                            onChange={e => setDescription(e.target.value)}
                         />
                     </div>
 
-                    <Button 
-                      title='Salvar alterações'
-                      onClick={handleNewPlate} 
+                    <Button
+                        title='Salvar alterações'
+                        onClick={handleNewPlate}
                     />
                 </Form>
             </Main>
