@@ -77,7 +77,7 @@ export function Header({ handleSearch }) {
               />
 
               :
-              <Button
+              <Button to='/orders'
                 className='btn'
                 title='Pedidos '
                 count={`(${count})`}
@@ -94,7 +94,13 @@ export function Header({ handleSearch }) {
           :
           <MyOrderMobile>
             <Receipt size={25} />
-            <p>{count}</p>
+            <p>
+              <Link to='orders'>
+                {count}
+
+              </Link>
+            
+            </p>
           </MyOrderMobile>
         }
 

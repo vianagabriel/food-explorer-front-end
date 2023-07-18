@@ -127,7 +127,9 @@ export const MyOrder = styled.div`
 
 export const MyOrderMobile = styled.div`
  display: flex;
- 
+  a{
+   color: #fff;
+  }
  
   p {
     background-color: ${({ theme }) => theme.Colors.Tomato_100};
@@ -138,6 +140,8 @@ export const MyOrderMobile = styled.div`
     margin-left: -1.3rem;
     padding: .1rem .4rem;
   }
+
+  
 
   @media(min-width:800px){
     display: none;

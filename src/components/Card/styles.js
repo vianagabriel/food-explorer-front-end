@@ -17,6 +17,7 @@ export const Container = styled.div`
     > a {
       > svg{
         color: ${({ theme }) => theme.Colors.Light_100};
+        
       }
     }
   }
@@ -89,6 +90,11 @@ export const Amount = styled.div`
   gap: 1.5rem;
   font-size: 1.8rem;
 
+
+ > svg{
+  cursor: pointer;
+ }
+ 
 `;
 
 
@@ -96,6 +102,7 @@ export const AmountRequest = styled.div`
  display: flex;
  flex-direction: column;
  gap: 1.2rem;
+
  
  @media (min-width: 1000px){
     flex-direction: row;

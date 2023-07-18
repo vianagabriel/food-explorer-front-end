@@ -6,6 +6,7 @@ import { Details } from '../pages/Details';
 import { New } from '../pages/New';
 import { Edit } from '../pages/Edit';
 import { Favorites } from '../pages/Favorites';
+import { MyOrders } from '../pages/MyOrder';
 import { useAuth } from '../hooks/auth';
 
 
@@ -16,6 +17,7 @@ export function AppRoutes() {
         <Route path='/' element={<Home/>}/>
         <Route path='/details/:id' element={<Details/>}/>
         <Route path='/favorites' element={<Favorites/>}/>
+        <Route path='/orders' element={<MyOrders/>}/>
         { user.isAdmin && <Route path='/new' element={<New/>}/> }
         { user.isAdmin && <Route path='/edit/:id' element={<Edit/>}/> }
     </Routes>
